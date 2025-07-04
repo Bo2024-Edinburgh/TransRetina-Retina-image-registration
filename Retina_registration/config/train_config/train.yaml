@@ -1,0 +1,36 @@
+train:
+  device: cuda    # Specify device to train on (e.g. cuda:2 for GPU ID 2)
+  pretrain_model: None  # Path to a pre-trained model (None if training from scratch)
+  model_save_prefix: U-Net # Prefix for saved model files during training
+  save_files_dir: /root/autodl-fs/Code/save # Directory to save model checkpoints and logs
+  model_image_width: 768        # Input image width for the model
+  model_image_height: 768       # Input image height for the model
+  image_original_width: 2592    # Original image width, often used to map keypoints
+  mage_original_height: 1728    # Original image height
+
+  train_image_dir: dataset/training/images_scale   # Directory for training images
+  anno_file_dir: dataset/training/keypoint_scale   # Directory for annotation files (keypoints)
+  dis_map_path: utils/guide_dis_map.png            # Path to distance guide map
+  use_matching_trick: True    # Whether to apply specific matching tricks during training
+  Em_map: True                # Whether to use guide maps
+  PAG_map: True               # Whether to use score maps
+  point_select: 2             # 1: random point selection, 2: gradient-based selection
+  nms_size: 10                # Non-maximum suppression window size
+  nms_thresh: 0.01            # Non-maximum suppression threshold
+  knn_thresh: 0.9             # Threshold for K-Nearest Neighbors matching
+  keypoint_number: 60         # Number of keypoints to be detected or used
+  train_epochs: 200           # Total number of training epochs
+  ir_epochs: [200, 300]       # Epochs for specific additional training stages or fine-tuning
+  save_epochs: 30             # Save model checkpoint every N epochs
+  batch_size: 8               # Batch size for training
+  loss: l2                    # Loss function type: options are l1, l2, ncc
+  lr: 0.001                   # Learning rate
+  loss_with_smooth: True      # Whether to include smoothness regularization in the loss
+  loss_weights: [1,1,0.1,0.2] # Weights for individual loss components: [mse, smooth, keypoints]
+  train_with_kp: True         # Whether to include keypoints in training supervision
+  window_size: 25             # Window size for local NCC or similar operations (default: 9)
+  gradient_accumulation_steps: 4    # Steps for gradient accumulation to simulate larger effective batch size
+  warmup_steps: 100                 # Number of warmup steps for learning rate scheduling
+  scheduler_type: "cosine"          # Type of learning rate scheduler: "plateau", "cosine", "original"
+  mixed_precision: True             # Enable mixed precision training (fp16)
+  gradient_clip_norm: 1.0           # Gradient clipping norm to stabilize training

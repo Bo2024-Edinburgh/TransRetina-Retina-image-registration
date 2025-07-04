@@ -1,0 +1,11 @@
+PREDICT:
+  device: cuda:0                            # 这指定了用于预测的设备为GPU的第0个设备
+  model_save_path: save/SuperRetina.pth     # 模型文件的位置
+  model_image_width: 768                    # 模型期望输入图像的宽度和高度。在进行图像预测之前
+  model_image_height: 768                   # 输入图像需要被调整到这个尺寸。
+  use_matching_trick: True                  # 是否在预测过程中使用某种匹配技巧。匹配技巧可能是为了提高预测的准确性或是为了在预测过程中处理特定的问题
+
+  nms_size: 10                              # 非极大值抑制的窗口大小
+  nms_thresh: 0.01                          # NMS的阈值。如果两个预测框的交并比（IoU）大于这个阈值，那么其中一个预测框将会被移除。
+  knn_thresh: 0.9                           # k-近邻搜索的阈值, 决定了两个数据点之间的相似度需要达到多少才能被认为是邻近的
+  
