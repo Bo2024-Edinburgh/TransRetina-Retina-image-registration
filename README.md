@@ -1,6 +1,6 @@
 # Deep Registration Model
 
-![Model](/images/model.png)
+![Model](/image/model.png)
 
 ## Overview
 
@@ -9,7 +9,6 @@ This project implements a deep learning based image registration framework, inte
 ---
 
 ## Training
-
 ### 1. Generate image pairs
 
 Prepare your dataset as aligned or misaligned image pairs. This can involve manual pairing or using domain-specific augmentation to generate deformation.
